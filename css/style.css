@@ -2,6 +2,7 @@
   box-sizing: border-box;
 }
 
+
 body {
   font-family: Roboto, sans-serif;
   background-color: #fafafa;
@@ -59,6 +60,7 @@ main .categoria h1 {
 }
 
 .opcao {
+  text-decoration: none;
   background-color: #ffffff;
   width: 172px;
   border-radius: 9px;
@@ -89,10 +91,24 @@ main .categoria h1 {
   color: #000000;
 }
 
+.opcao ion-icon {
+  color: #32B72F;
+  height: 15.44px;
+  width: 15.44px;
+  display: none;
+}
+
+.opcao .price-area  {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 footer {
   height: 92px;
   width: 100%;
   background-color: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   display: flex;
   justify-content: center;
   align-items: center;
