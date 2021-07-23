@@ -7,7 +7,7 @@ const button = document.querySelector("button");
 
 
 function selectOption(click_id, className) {
-  
+
   if (className === "opcao prato") {
     removeSelectedStyle(opcoesPratos);
     addSelectedStyle(click_id); 
@@ -64,6 +64,9 @@ function enableButtom(opcoes) {
 function encaminhaZap() {
 
   let itens = document.querySelectorAll(".selectedd");
+
+  const nome = prompt("Por favor, informe seu nome: ");
+  const endereco = prompt("Por favor, informe seu endereço");
   
   let nomePrato = itens[0].children[1].innerHTML;
   let valorPratoString = itens[0].children[3].children[0].innerHTML;
@@ -74,7 +77,7 @@ function encaminhaZap() {
   let valorBebidaNumero = converterPrecoParaNumero(valorBebidaString);
 
   let nomeSobremesa = itens[2].children[1].innerHTML;
-  let valorSobremesaString = itens[1].children[3].children[0].innerHTML;
+  let valorSobremesaString = itens[2].children[3].children[0].innerHTML;
   let valorSobremesaNumero = converterPrecoParaNumero(valorSobremesaString);
 
   let valorTotal = valorPratoNumero + valorBebidaNumero + valorSobremesaNumero;
@@ -84,7 +87,10 @@ function encaminhaZap() {
   - Prato: ${nomePrato}
   - Bebida: ${nomeBebida}
   - Sobremesa: ${nomeSobremesa}
-  Total: R$ ${valorTotal}`;
+  Total: R$ ${valorTotal}
+  
+  Nome: ${nome}
+  Endereço: ${endereco}`;
 
   let a = document.createElement("a");
   a.target = '_blank';
@@ -98,6 +104,51 @@ function converterPrecoParaNumero(item) {
   let precoNumero = Number(precoString);
 
   return precoNumero;
+}
+
+function abrirConfirmacao() {
+  const confirmCard = document.querySelector(".confirmar-pedido");
+  confirmCard.style.display = "initial";
+
+  let main = document.querySelector("main");
+  main.style.opacity = "0.5";
+
+  let itens = document.querySelectorAll(".selectedd");
+  
+  let nomePrato = itens[0].children[1].innerHTML;
+  let valorPratoString = itens[0].children[3].children[0].innerHTML;
+  let valorPratoNumero = converterPrecoParaNumero(valorPratoString);
+
+  let nomeBebida = itens[1].children[1].innerHTML;
+  let valorBebidaString = itens[1].children[3].children[0].innerHTML;
+  let valorBebidaNumero = converterPrecoParaNumero(valorBebidaString);
+
+  let nomeSobremesa = itens[2].children[1].innerHTML;
+  let valorSobremesaString = itens[2].children[3].children[0].innerHTML;
+  let valorSobremesaNumero = converterPrecoParaNumero(valorSobremesaString);
+
+  let valorTotal = valorPratoNumero + valorBebidaNumero + valorSobremesaNumero;
+
+
+  let prato = document.querySelector(".pratoo").children[0];
+  let pratoValor = document.querySelector(".pratoo").children[1];
+  prato.innerHTML = nomePrato;
+  pratoValor.innerHTML = `${valorPratoNumero}0`;
+
+  let bebida = document.querySelector(".bebidaa").children[0];
+  let bebidaValor = document.querySelector(".bebidaa").children[1];
+  bebida.innerHTML = nomeBebida;
+  bebidaValor.innerHTML = `${valorBebidaNumero}0`;
+
+  let sobremesa = document.querySelector(".sobremesaa").children[0];
+  let sobremesaValor = document.querySelector(".sobremesaa").children[1];
+  sobremesa.innerHTML = nomeSobremesa;
+  sobremesaValor.innerHTML = `${valorSobremesaNumero}0`;
+
+  valorTotal = valorPratoNumero + valorBebidaNumero + valorSobremesaNumero;
+
+  let total = document.querySelector(".valor-total").children[1];
+  total.innerHTML = `R$ ${valorTotal}0`;
 }
 
 
