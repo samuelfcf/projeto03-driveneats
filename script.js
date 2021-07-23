@@ -1,7 +1,7 @@
-const opcoes = document.querySelectorAll(".opcoes");
-const opcoesPratos = document.querySelectorAll(".prato");
-const opcoesBebidas = document.querySelectorAll(".bebida");
-const opcoesSobremesas = document.querySelectorAll(".sobremesa");
+const menuCategories = document.querySelectorAll(".opcoes");
+const foodsOptions = document.querySelectorAll(".prato");
+const drinksOptions = document.querySelectorAll(".bebida");
+const dessertsOptions = document.querySelectorAll(".sobremesa");
 
 const button = document.querySelector("button");
 
@@ -9,34 +9,34 @@ const button = document.querySelector("button");
 function selectOption(click_id, className) {
 
   if (className === "opcao prato") {
-    removeSelectedStyle(opcoesPratos);
-    addSelectedStyle(click_id); 
-    opcoes[0].classList.add("selected");
+    removeSelectedStyleToItem(foodsOptions);
+    addSelectedStyleToItem(click_id); 
+    menuCategories[0].classList.add("selected");
 
   } else if (className === "opcao bebida") {
-    removeSelectedStyle(opcoesBebidas);
-    addSelectedStyle(click_id); 
-    opcoes[1].classList.add("selected");
+    removeSelectedStyleToItem(drinksOptions);
+    addSelectedStyleToItem(click_id); 
+    menuCategories[1].classList.add("selected");
 
   } else if (className === "opcao sobremesa") {
-    removeSelectedStyle(opcoesSobremesas);
-    addSelectedStyle(click_id); 
-    opcoes[2].classList.add("selected");
+    removeSelectedStyleToItem(dessertsOptions);
+    addSelectedStyleToItem(click_id); 
+    menuCategories[2].classList.add("selected");
   }
 
-  enableButtom(opcoes);
+  enableOrderButtom(menuCategories);
   
 }
 
-function removeSelectedStyle(elements) {
-  elements.forEach(opcao => {
-    opcao.style.border = "none";
-    opcao.classList.remove("selectedd");
-    opcao.children[3].children[1].style.display = "none";
+function removeSelectedStyleToItem(itens) {
+  itens.forEach(item => {
+    item.style.border = "none";
+    item.classList.remove("selectedd");
+    item.children[3].children[1].style.display = "none";
   });
 }
 
-function addSelectedStyle(id) {
+function addSelectedStyleToItem(id) {
   const element = document.getElementById(id);
   const icon = element.children[3].children[1];
   element.style.border = "2px solid #32B72F";
@@ -44,12 +44,12 @@ function addSelectedStyle(id) {
   icon.style.display = "initial";
 }
 
-function enableButtom(opcoes) {
+function enableOrderButtom(menuCategories) {
 
   let cont = 0;
 
-  opcoes.forEach(opcao => {
-    if (opcao.classList.contains("selected")) {
+  menuCategories.forEach(category => {
+    if (category.classList.contains("selected")) {
       cont++;
     }
   });
@@ -61,94 +61,94 @@ function enableButtom(opcoes) {
   }
 }
 
-function encaminhaZap() {
+function sendOrderToZap() {
 
-  let itens = document.querySelectorAll(".selectedd");
+  const selectedItens = document.querySelectorAll(".selectedd");
 
-  const nome = prompt("Por favor, informe seu nome: ");
-  const endereco = prompt("Por favor, informe seu endereço");
+  const clientName = prompt("Por favor, informe seu nome: ");
+  const clientAdress = prompt("Por favor, informe seu endereço");
   
-  let nomePrato = itens[0].children[1].innerHTML;
-  let valorPratoString = itens[0].children[3].children[0].innerHTML;
-  let valorPratoNumero = converterPrecoParaNumero(valorPratoString);
+  const foodName = selectedItens[0].children[1].innerHTML;
+  const foodPriceString = selectedItens[0].children[3].children[0].innerHTML;
+  const foodPriceNumber = convertPriceStringToNumber(foodPriceString);
 
-  let nomeBebida = itens[1].children[1].innerHTML;
-  let valorBebidaString = itens[1].children[3].children[0].innerHTML;
-  let valorBebidaNumero = converterPrecoParaNumero(valorBebidaString);
+  const drinkName = selectedItens[1].children[1].innerHTML;
+  const drinkPriceString = selectedItens[1].children[3].children[0].innerHTML;
+  const drinkPriceNumber = convertPriceStringToNumber(drinkPriceString);
 
-  let nomeSobremesa = itens[2].children[1].innerHTML;
-  let valorSobremesaString = itens[2].children[3].children[0].innerHTML;
-  let valorSobremesaNumero = converterPrecoParaNumero(valorSobremesaString);
+  const dessertName = selectedItens[2].children[1].innerHTML;
+  const dessertPriceString = selectedItens[2].children[3].children[0].innerHTML;
+  const dessertPriceNumber = convertPriceStringToNumber(dessertPriceString);
 
-  let valorTotal = valorPratoNumero + valorBebidaNumero + valorSobremesaNumero;
+  const orderPrice = foodPriceNumber + drinkPriceNumber + dessertPriceNumber;
 
 
-  let msg = `Olá, gostaria de fazer o pedido:
-  - Prato: ${nomePrato}
-  - Bebida: ${nomeBebida}
-  - Sobremesa: ${nomeSobremesa}
-  Total: R$ ${valorTotal}
+  const msg = `Olá, gostaria de fazer o pedido:
+  - Prato: ${foodName}
+  - Bebida: ${drinkName}
+  - Sobremesa: ${dessertName}
+  Total: R$ ${orderPrice}
   
-  Nome: ${nome}
-  Endereço: ${endereco}`;
+  Nome: ${clientName}
+  Endereço: ${clientAdress}`;
 
-  let a = document.createElement("a");
+  const a = document.createElement("a");
   a.target = '_blank';
   a.href = `https://wa.me/5588996756917?text=${encodeURIComponent(msg)}`;
   a.click();
 }
 
-function converterPrecoParaNumero(item) {
-  let array = item.replace(/,/, '.').split(' ');
-  let precoString = array[1];
-  let precoNumero = Number(precoString);
+function convertPriceStringToNumber(price) {
+  const priceWithDot = price.replace(/,/, '.');
+  const [, priceString] = priceWithDot.split(' ');
+  const priceNumber = Number(priceString);
 
-  return precoNumero;
+  return priceNumber;
 }
 
-function abrirConfirmacao() {
+function enableConfirmationCard() {
   const confirmCard = document.querySelector(".confirmar-pedido");
   confirmCard.style.display = "initial";
 
-  let main = document.querySelector("main");
+  const main = document.querySelector("main");
   main.style.opacity = "0.5";
 
-  let itens = document.querySelectorAll(".selectedd");
+  const itens = document.querySelectorAll(".selectedd");
   
-  let nomePrato = itens[0].children[1].innerHTML;
-  let valorPratoString = itens[0].children[3].children[0].innerHTML;
-  let valorPratoNumero = converterPrecoParaNumero(valorPratoString);
+  // Pegando os campos Nome e Preço dos itens selecionados no menu.
+  const foodName = itens[0].children[1].innerHTML;
+  const foodPriceString = itens[0].children[3].children[0].innerHTML;
+  const foodPriceNumber = convertPriceStringToNumber(foodPriceString);
 
-  let nomeBebida = itens[1].children[1].innerHTML;
-  let valorBebidaString = itens[1].children[3].children[0].innerHTML;
-  let valorBebidaNumero = converterPrecoParaNumero(valorBebidaString);
+  const drinkName = itens[1].children[1].innerHTML;
+  const drinkPriceString = itens[1].children[3].children[0].innerHTML;
+  const drinkPriceNumber = convertPriceStringToNumber(drinkPriceString);
 
-  let nomeSobremesa = itens[2].children[1].innerHTML;
-  let valorSobremesaString = itens[2].children[3].children[0].innerHTML;
-  let valorSobremesaNumero = converterPrecoParaNumero(valorSobremesaString);
+  const dessertName = itens[2].children[1].innerHTML;
+  const dessertPriceString = itens[2].children[3].children[0].innerHTML;
+  const dessertPriceNumber = convertPriceStringToNumber(dessertPriceString);
 
-  let valorTotal = valorPratoNumero + valorBebidaNumero + valorSobremesaNumero;
+  const orderPrice = foodPriceNumber + drinkPriceNumber + dessertPriceNumber;
+  const orderPriceRounded = orderPrice.toFixed(2);
 
+  // Adicionando Nome e Preço dos itens ao card de confirmaçao
+  const foodNameField = document.querySelector(".pratoo").children[0];
+  const foodPriceField = document.querySelector(".pratoo").children[1];
+  foodNameField.innerHTML = foodName;
+  foodPriceField.innerHTML = `${foodPriceNumber.toFixed(2)}`;
 
-  let prato = document.querySelector(".pratoo").children[0];
-  let pratoValor = document.querySelector(".pratoo").children[1];
-  prato.innerHTML = nomePrato;
-  pratoValor.innerHTML = `${valorPratoNumero}0`;
+  const drinkNameField = document.querySelector(".bebidaa").children[0];
+  const drinkPriceField = document.querySelector(".bebidaa").children[1];
+  drinkNameField.innerHTML = drinkName;
+  drinkPriceField.innerHTML = `${drinkPriceNumber.toFixed(2)}`;
 
-  let bebida = document.querySelector(".bebidaa").children[0];
-  let bebidaValor = document.querySelector(".bebidaa").children[1];
-  bebida.innerHTML = nomeBebida;
-  bebidaValor.innerHTML = `${valorBebidaNumero}0`;
+  const dessertNameField = document.querySelector(".sobremesaa").children[0];
+  const dessertPriceField = document.querySelector(".sobremesaa").children[1];
+  dessertNameField.innerHTML = dessertName;
+  dessertPriceField.innerHTML = `${dessertPriceNumber.toFixed(2)}`;
 
-  let sobremesa = document.querySelector(".sobremesaa").children[0];
-  let sobremesaValor = document.querySelector(".sobremesaa").children[1];
-  sobremesa.innerHTML = nomeSobremesa;
-  sobremesaValor.innerHTML = `${valorSobremesaNumero}0`;
-
-  valorTotal = valorPratoNumero + valorBebidaNumero + valorSobremesaNumero;
-
-  let total = document.querySelector(".valor-total").children[1];
-  total.innerHTML = `R$ ${valorTotal}0`;
+  const orderPriceField = document.querySelector(".valor-total").children[1];
+  orderPriceField.innerHTML = `R$ ${orderPriceRounded}`;
 }
 
 
