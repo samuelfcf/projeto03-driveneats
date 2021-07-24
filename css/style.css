@@ -44,23 +44,23 @@ main {
   padding-bottom: 20px;
 }
 
-main .categoria {
+main .category {
   padding-left: 19px;
 }
-main .categoria h1 {
+main .category h1 {
   padding-top: 31px;
   margin-bottom: 17px;
   font-size: 26px;
   color: #333333
 }
 
-.opcoes {
+.options {
   display: flex;
   gap: 16px;
   overflow-x: scroll;
 }
 
-.opcao {
+.option {
   text-decoration: none;
   background-color: #ffffff;
   width: 172px;
@@ -69,14 +69,18 @@ main .categoria h1 {
   padding: 18px 13px 14px;
 }
 
-.opcao h2 {
+.selected {
+  border: 2px solid #32B72F;
+}
+
+.option h2 {
   font-size: 16px;
   font-weight: 700;
   color: #333333;
   margin: 10px 4px 4px;
 }
 
-.opcao p {
+.option p {
   font-size: 15px;
   font-weight: 300;
   line-height: 18px;
@@ -85,21 +89,21 @@ main .categoria h1 {
   margin-bottom: 10px;
 }
 
-.opcao strong {
+.option strong {
   font-weight: 500;
   font-size: 16px;
   margin-left: 3px;
   color: #000000;
 }
 
-.opcao ion-icon {
+.option ion-icon {
   color: #32B72F;
   height: 15.44px;
   width: 15.44px;
   display: none;
 }
 
-.opcao .price-area  {
+.option .price-area  {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -119,7 +123,7 @@ footer {
   left: 0;
 }
 
-footer button{
+footer .finalize-order-button {
   color: #ffffff;
   font-weight: 400;
   font-size: 20px;
@@ -131,8 +135,11 @@ footer button{
   width: 364px;
 }
 
+.bluried {
+  opacity: 0.3;
+}
 
-.confirmar-pedido {
+.confirm-order-card {
   height: 353px;
   width: 377px;
   font-size: 22px;
@@ -152,25 +159,25 @@ footer button{
 
 }
 
-.confirmar-pedido h2 {
+.confirm-order-card h2 {
   text-align: center;
   margin-top: 21px;
   font-weight: 600;
 }
 
-.pedido-itens {
+.order-itens {
   display: flex;
   flex-direction: column;
   gap: 13px;
   margin: 20px 26px auto;
 }
 
-.pedido {
+.order {
   display: flex;
   justify-content:space-between;
 }
 
-.fazer-pedido {
+.confirm-order-button {
   margin-top: 24px;
   background-color: #ffffff;
   height: 52px;
@@ -184,7 +191,7 @@ footer button{
   font-weight: 500;
 }
 
-.cancelar {
+.cancel {
   border: 0;
   background-color: #50d074;
   color: #ffffff;

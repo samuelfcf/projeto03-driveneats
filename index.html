@@ -13,16 +13,17 @@
 </head>
 <body>
 
+<div class="container">
   <header>
     <h1>DrivenEats</h1>
     <h2>Sua comida em 6 minutos</h2>
   </header>
 
   <main>
-    <div class="categoria">
+    <div class="category">
       <h1>Primeiro, seu prato</h1>
-      <ul class="opcoes">
-        <li class="opcao prato" id="1" onclick="selectOption(this.id, this.className)">
+      <ul class="options">
+        <li class="option food" id="1" onclick="selectOption(this, this.className)">
           <img src="assets/frango_yin_yang.svg">
           <h2>Frango Yin Yans</h2>
           <p>Um pouco de batata, um pouco de salada</p>
@@ -31,7 +32,7 @@
             <ion-icon name="checkmark-circle"></ion-icon>
           </div>
         </li>
-        <li class="opcao prato" id="2" onclick="selectOption(this.id, this.className)">
+        <li class="option food" id="2" onclick="selectOption(this, this.className)">
           <img src="assets/frango_yin_yang.svg">
           <h2>Frango Yin Yans</h2>
           <p>Um pouco de batata, um pouco de salada</p>
@@ -40,7 +41,7 @@
             <ion-icon name="checkmark-circle"></ion-icon>
           </div>
         </li>
-        <li class="opcao prato" id="3" onclick="selectOption(this.id, this.className)">
+        <li class="option food" id="3" onclick="selectOption(this, this.className)">
           <img src="assets/frango_yin_yang.svg">
           <h2>Frango Yin Yans</h2>
           <p>Um pouco de batata, um pouco de salada</p>
@@ -49,7 +50,7 @@
             <ion-icon name="checkmark-circle"></ion-icon>
           </div>
         </li>
-        <li class="opcao prato" id="4" onclick="selectOption(this.id, this.className)">
+        <li class="option food" id="4" onclick="selectOption(this, this.className)">
           <img src="assets/frango_yin_yang.svg">
           <h2>Frango Yin Yans</h2>
           <p>Um pouco de batata, um pouco de salada</p>
@@ -61,10 +62,10 @@
       </ul>
     </div>
 
-    <div class="categoria">
+    <div class="category">
       <h1>Agora, sua bebida</h1>
-      <ul class="opcoes">
-        <li class="opcao bebida" id="5" onclick="selectOption(this.id, this.className)">
+      <ul class="options">
+        <li class="option drink" id="5" onclick="selectOption(this, this.className)">
           <img src="assets/coquinha_gelada.svg">
           <h2>Coquinha gelada</h2>
           <p>Lata 350ml</p>
@@ -73,7 +74,7 @@
             <ion-icon name="checkmark-circle"></ion-icon>
           </div>
         </li>
-        <li class="opcao bebida" id="6" onclick="selectOption(this.id, this.className)">
+        <li class="option drink" id="6" onclick="selectOption(this, this.className)">
           <img src="assets/coquinha_gelada.svg">
           <h2>Coquinha gelada</h2>
           <p>Lata 350ml</p>
@@ -82,7 +83,7 @@
             <ion-icon name="checkmark-circle"></ion-icon>
           </div>
         </li>
-        <li class="opcao bebida" id="7" onclick="selectOption(this.id, this.className)">
+        <li class="option drink" id="7" onclick="selectOption(this, this.className)">
           <img src="assets/coquinha_gelada.svg">
           <h2>Coquinha gelada</h2>
           <p>Lata 350ml</p>
@@ -91,7 +92,7 @@
             <ion-icon name="checkmark-circle"></ion-icon>
           </div>
         </li>
-        <li class="opcao bebida" id="8" onclick="selectOption(this.id, this.className)">
+        <li class="option drink" id="8" onclick="selectOption(this, this.className)">
           <img src="assets/coquinha_gelada.svg">
           <h2>Coquinha gelada</h2>
           <p>Lata 350ml</p>
@@ -103,10 +104,10 @@
       </ul>
     </div>
 
-    <div class="categoria">
+    <div class="category">
       <h1>Por fim, sua sobremesa</h1>
-      <ul class="opcoes">
-        <li class="opcao sobremesa" id="9" onclick="selectOption(this.id, this.className)">
+      <ul class="options">
+        <li class="option dessert" id="9" onclick="selectOption(this, this.className)">
           <img src="assets/pudim.svg">
           <h2>Pudim</h2>
           <p>Apenas pudim</p>
@@ -115,7 +116,7 @@
             <ion-icon name="checkmark-circle"></ion-icon>
           </div>
         </li>
-        <li class="opcao sobremesa" id="10" onclick="selectOption(this.id, this.className)">
+        <li class="option dessert" id="10" onclick="selectOption(this, this.className)">
           <img src="assets/pudim.svg">
           <h2>Pudim</h2>
           <p>Apenas pudim</p>
@@ -124,7 +125,7 @@
             <ion-icon name="checkmark-circle"></ion-icon>
           </div>
         </li>
-        <li class="opcao sobremesa" id="11" onclick="selectOption(this.id, this.className)">
+        <li class="option dessert" id="11" onclick="selectOption(this, this.className)">
           <img src="assets/pudim.svg">
           <h2>Pudim</h2>
           <p>Apenas pudim</p>
@@ -133,7 +134,7 @@
             <ion-icon name="checkmark-circle"></ion-icon>
           </div>
         </li>
-        <li class="opcao sobremesa" id="12" onclick="selectOption(this.id, this.className)">
+        <li class="option dessert" id="12" onclick="selectOption(this, this.className)">
           <img src="assets/pudim.svg">
           <h2>Pudim</h2>
           <p>Apenas pudim</p>
@@ -147,32 +148,33 @@
   </main>
 
   <footer>
-    <button disabled="true" onclick="enableConfirmationCard()">Selecione os 3 itens para fechar o pedido</button>
+    <button disabled="true" class="finalize-order-button" onclick="enableConfirmationCard()">Selecione os 3 itens para fechar o pedido</button>
   </footer>
+</div>
 
 
-  <div class="confirmar-pedido">
+  <div class="confirm-order-card">
     <h2>Confirme seu pedido</h2>
-    <div class="pedido-itens">
-      <div class="pedido pratoo">
+    <div class="order-itens">
+      <div class="order food-field">
         <p>qeqwe</p>
         <p>123</p>
       </div>
-      <div class="pedido bebidaa">
+      <div class="order drink-field">
         <p>qeqweqwe</p>
         <p>12333</p>
       </div>
-      <div class="pedido sobremesaa">
+      <div class="order dessert-field">
         <p>qeqweqe</p>
         <p>1233</p>
       </div>
-      <div class="pedido valor-total">
+      <div class="order price-field">
         <p>TOTAL</p>
         <p>4455</p>
       </div>
 
-      <button class="fazer-pedido" onclick="sendOrderToZap()">Tudo certo, pode pedir!</button>
-      <button class="cancelar">Cancelar</button>
+      <button class="confirm-order-button" onclick="sendOrderToZap()">Tudo certo, pode pedir!</button>
+      <button class="cancel">Cancelar</button>
     </div>
   </div>
 
