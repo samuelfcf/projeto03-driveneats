@@ -2,8 +2,8 @@
 
 
 <p float="left">
-  <img src="assets/tela1.png" />
-  <img src="assets/tela2.png" />
+  <img src="assets/tela1.png" ></img>
+  <img src="assets/tela2.png" ></img>
 </p>
 
 ## 🔖 Sobre
