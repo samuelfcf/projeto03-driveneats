@@ -1,7 +1,10 @@
 <h1 align="center">Clone do Instagram</h1>  
 
 
-  ![alt-text-1](assets/tela1.png "menu")  ![alt-text-2](assets/tela2.png "confirmacao")
+<p float="left">
+  <img src="assets/tela1.png" />
+  <img src="assets/tela2.png" />
+</p>
 
 ## 🔖 Sobre
 Projeto que simula um aplicativo de delivery, onde é possível selecionar os itens do pedido e encaminhá-los para o whatsapp do restaurante.
