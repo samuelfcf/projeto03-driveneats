@@ -12,32 +12,31 @@ let orderPrice;
 
 function selectOption(item, className) {
 
-  if (className === "option food") {
-    removeSelectedStyleFromCategoryElements(foodsOptions);
-    addSelectedStyleToItem(item); 
-
-  } else if (className === "option drink") {
-    removeSelectedStyleFromCategoryElements(drinksOptions);
-    addSelectedStyleToItem(item); 
-
-  } else if (className === "option dessert") {
-    removeSelectedStyleFromCategoryElements(dessertsOptions);
-    addSelectedStyleToItem(item); 
+  switch(className) {
+    case "option food":
+      removeSelectedStyleFromCategoryElements(foodsOptions);
+      break;
+    case "option drink":
+      removeSelectedStyleFromCategoryElements(drinksOptions);
+      break;
+    case "option dessert":
+      removeSelectedStyleFromCategoryElements(dessertsOptions);
   }
 
+  addSelectedStyleToItem(item); 
   enableOrderButtom();  
 }
 
 function removeSelectedStyleFromCategoryElements(itens) {
   itens.forEach(item => {
     item.classList.remove("selected");
-    item.children[3].children[1].style.display = "none";
+    item.children[3].children[1].classList.remove("on");
   });
 }
 
 function addSelectedStyleToItem(item) {
   item.classList.add("selected");
-  item.children[3].children[1].style.display = "initial";
+  item.children[3].children[1].classList.add("on");
 }
 
 function enableOrderButtom() {
@@ -48,13 +47,13 @@ function enableOrderButtom() {
   if(allItensSelected.length === 3) {
     buttonFinalizeOrder.disabled = false;
     buttonFinalizeOrder.innerHTML = "Fechar pedido";
-    buttonFinalizeOrder.style.backgroundColor = "#32B72F";
+    buttonFinalizeOrder.classList.add("button-on");
   }
 }
 
 function enableConfirmationCard() {
   const confirmCard = document.querySelector(".confirm-order-card");
-  confirmCard.style.display = "initial";
+  confirmCard.classList.add("on");
 
   const contentSite = document.querySelector(".container");
   contentSite.classList.add("bluried");
@@ -111,16 +110,13 @@ function sendOrderToZap() {
   const orderPriceRounded = orderPrice.toFixed(2);
 
   const msg = `Olá, gostaria de fazer o pedido:
-  - Prato: ${foodName}
-  - Bebida: ${drinkName}
-  - Sobremesa: ${dessertName}
-  Total: R$ ${orderPriceRounded}
+  - *Prato*: ${foodName}
+  - *Bebida*: ${drinkName}
+  - *Sobremesa*: ${dessertName}
+  Total: R$ *${orderPriceRounded}*
   
   Nome: ${clientName}
   Endereço: ${clientAdress}`;
 
-  const a = document.createElement("a");
-  a.target = '_blank';
-  a.href = `https://wa.me/5588996756917?text=${encodeURIComponent(msg)}`;
-  a.click();
+  window.open(`https://wa.me/5588996756917?text=${encodeURIComponent(msg)}`, '_blank');
 }
