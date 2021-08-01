@@ -30,13 +30,15 @@ function selectOption(item, className) {
 function removeSelectedStyleFromCategoryElements(itens) {
   itens.forEach(item => {
     item.classList.remove("selected");
-    item.children[3].children[1].classList.remove("on");
+    const checkmark = item.children[3].children[1];
+    checkmark.classList.remove("on");
   });
 }
 
 function addSelectedStyleToItem(item) {
   item.classList.add("selected");
-  item.children[3].children[1].classList.add("on");
+  const checkmark = item.children[3].children[1];
+  checkmark.classList.add("on");
 }
 
 function enableOrderButtom() {
